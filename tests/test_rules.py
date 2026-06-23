@@ -228,3 +228,26 @@ def test_demo_has_pass_warn_fail():
 
 def test_demo_score_is_deterministic_89():
     assert audit_file(str(DEMO)).score == 89
+
+
+def test_load_metrics_text_parses_string():
+    from semlint.engine import load_metrics_text
+
+    metrics, dims = load_metrics_text("metrics:\n  - name: a\n    formula: SUM(x)\n")
+    assert metrics[0]["name"] == "a"
+    assert dims == {}
+
+
+def test_load_metrics_text_rejects_non_mapping():
+    import pytest
+
+    from semlint.engine import load_metrics_text
+
+    with pytest.raises(ValueError):
+        load_metrics_text("- a\n- b\n")
+
+
+def test_audit_text_matches_demo_file():
+    from semlint.engine import audit_text
+
+    assert audit_text(DEMO.read_text(encoding="utf-8")).score == 89
