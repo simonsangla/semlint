@@ -1,0 +1,14 @@
+version: 1
+observations:
+  - metric: revenue
+    observed_formula: SUM(order_amount) - SUM(refund_amount)
+    declared_value: 1250000
+    observed_value: 1198750
+  - metric: active_users
+    observed_formula: COUNT(DISTINCT user_id)
+    declared_value: 48200
+    observed_value: 48200
+  - metric: gmv
+    observed_formula: SUM(IFF(is_paid, gmv_amount, 0))
+    declared_value: 2400000
+    observed_value: 2310000
