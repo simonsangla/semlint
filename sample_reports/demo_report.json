@@ -1,0 +1,71 @@
+{
+  "findings": [
+    {
+      "message": "metric 'revenue' is defined 2 times",
+      "metric": "revenue",
+      "remediation": "keep one canonical definition of 'revenue' and remove or rename the duplicates",
+      "rule_id": "R1",
+      "rule_name": "duplicate definition",
+      "severity": "fail"
+    },
+    {
+      "message": "metric 'revenue' has conflicting formulas: SUM(order_amount), SUM(order_amount) - SUM(refund_amount)",
+      "metric": "revenue",
+      "remediation": "reconcile 'revenue' to a single agreed formula",
+      "rule_id": "R2",
+      "rule_name": "definition collision",
+      "severity": "fail"
+    },
+    {
+      "message": "no issues found",
+      "metric": null,
+      "remediation": "",
+      "rule_id": "R3",
+      "rule_name": "missing owner",
+      "severity": "pass"
+    },
+    {
+      "message": "metric 'active_users' has no description",
+      "metric": "active_users",
+      "remediation": "add a description to 'active_users'",
+      "rule_id": "R4",
+      "rule_name": "missing description",
+      "severity": "warn"
+    },
+    {
+      "message": "metric 'conversion_rate' has no grain",
+      "metric": "conversion_rate",
+      "remediation": "declare a time grain for 'conversion_rate'",
+      "rule_id": "R5",
+      "rule_name": "undefined or ambiguous grain",
+      "severity": "fail"
+    },
+    {
+      "message": "metric 'aov' references undefined dimension 'store'",
+      "metric": "aov",
+      "remediation": "define dimension 'store' or remove it from 'aov'",
+      "rule_id": "R6",
+      "rule_name": "orphaned dimension",
+      "severity": "fail"
+    },
+    {
+      "message": "metric 'churn_rate' missing aliases/synonyms, access rule for AI grounding",
+      "metric": "churn_rate",
+      "remediation": "add aliases/synonyms, access rule to 'churn_rate'",
+      "rule_id": "R7",
+      "rule_name": "ai-readiness gaps",
+      "severity": "warn"
+    },
+    {
+      "message": "metric 'gmv' formula uses non-portable construct(s): IFF(",
+      "metric": "gmv",
+      "remediation": "rewrite 'gmv' formula using ANSI/OSI-neutral SQL",
+      "rule_id": "R8",
+      "rule_name": "non-portable construct",
+      "severity": "warn"
+    }
+  ],
+  "metric_count": 7,
+  "rule_count": 8,
+  "score": 89
+}

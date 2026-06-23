@@ -1,0 +1,67 @@
+version: 1
+dimensions:
+  - name: date
+    grains: [day, week, month]
+  - name: region
+  - name: product_category
+  - name: channel
+metrics:
+  - name: revenue
+    label: Total revenue
+    description: Gross revenue before refunds, in EUR.
+    owner: finance@acme.com
+    formula: SUM(order_amount)
+    grain: day
+    dimensions: [date, region, product_category]
+    aliases: [total_revenue, gross_revenue]
+    access: finance
+  - name: revenue
+    label: Revenue (marketing)
+    description: Revenue attributed to paid channels.
+    owner: marketing@acme.com
+    formula: SUM(order_amount) - SUM(refund_amount)
+    grain: day
+    dimensions: [date, channel]
+    aliases: [paid_revenue]
+    access: marketing
+  - name: active_users
+    label: Active users
+    owner: product@acme.com
+    formula: COUNT(DISTINCT user_id)
+    grain: day
+    dimensions: [date, region]
+    aliases: [dau]
+    access: product
+  - name: conversion_rate
+    label: Conversion rate
+    description: Orders divided by sessions.
+    owner: growth@acme.com
+    formula: SUM(orders) / SUM(sessions)
+    dimensions: [date, channel]
+    aliases: [cvr]
+    access: growth
+  - name: aov
+    label: Average order value
+    description: Revenue per order.
+    owner: finance@acme.com
+    formula: SUM(order_amount) / COUNT(order_id)
+    grain: day
+    dimensions: [date, store]
+    aliases: [average_order_value]
+    access: finance
+  - name: churn_rate
+    label: Churn rate
+    description: Share of customers lost in the period.
+    owner: retention@acme.com
+    formula: SUM(churned) / SUM(active_start)
+    grain: month
+    dimensions: [date, region]
+  - name: gmv
+    label: Gross merchandise value
+    description: Total paid merchandise value.
+    owner: finance@acme.com
+    formula: SUM(IFF(is_paid, gmv_amount, 0))
+    grain: day
+    dimensions: [date, product_category]
+    aliases: [gross_merchandise_value]
+    access: finance
