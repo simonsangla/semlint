@@ -120,7 +120,7 @@ def _severity_bar_html(counts: dict) -> str:
         if c > 0
     )
     return (
-        f'<div style="display:flex;border-radius:6px;overflow:hidden;'
+        f'<div aria-hidden="true" style="display:flex;border-radius:6px;overflow:hidden;'
         f'border:1px solid {PALETTE["line"]}">{bars}</div>'
     )
 
@@ -204,7 +204,7 @@ def _diff_card_html(d: Diff) -> str:
 
 
 def render_reality(diffs: list) -> None:
-    st.subheader("Reality check - definition vs observed")
+    st.header("Reality check - definition vs observed")
     st.caption(
         "Observed values are a bundled sample. Connect a warehouse to diff declared "
         "definitions against live data."
@@ -223,7 +223,7 @@ def render_reality(diffs: list) -> None:
 def render_fix_first(issues: list) -> None:
     if not issues:
         return
-    st.subheader("Fix these first")
+    st.header("Fix these first")
     for i, f in enumerate(issues[:3], 1):
         with st.container(border=True):
             st.markdown(
@@ -237,7 +237,7 @@ def render_fix_first(issues: list) -> None:
 
 
 def render_findings(result: AuditResult) -> None:
-    st.subheader("All findings")
+    st.header("All findings")
     fcol, scol = st.columns([1, 2])
     sev = fcol.radio("Severity", ["all", "fail", "warn", "pass"], horizontal=True)
     query = scol.text_input("Search metric or rule", "")
@@ -270,7 +270,7 @@ def render_findings(result: AuditResult) -> None:
 
 
 def render_export(result: AuditResult) -> None:
-    st.subheader("Export report")
+    st.header("Export report")
     d1, d2 = st.columns(2)
     d1.download_button(
         "Download markdown report",
