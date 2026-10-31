@@ -25,6 +25,11 @@ defined consistently across the estate. semlint is that check.
 | R7 | AI-readiness gaps (aliases, allowed dimensions, access) |
 | R8 | non-portable construct (engine-specific SQL) |
 
+## Built with
+
+Python 3.11 or newer (CI runs 3.13), PyYAML for the metrics file, Streamlit for the
+optional UI, pytest and ruff for tests and lint. Dependencies are declared in `pyproject.toml`.
+
 ## Use
 
 ```
