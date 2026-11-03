@@ -13,7 +13,7 @@ dev = ["pytest>=8.0", "ruff>=0.5"]
 semlint = "semlint.cli:main"
 
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
